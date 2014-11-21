@@ -109,7 +109,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
        jdpPrincipal.add(obj);
        try{
            obj.setVisible(true);
-           obj.setMaximum(true);
+           obj.setClosable(true);
+           //obj.setMaximum(true);
        }catch (Exception e){
            e.printStackTrace();
        }
@@ -121,7 +122,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
        jdpPrincipal.add(obj);
        try{
            obj.setVisible(true);
-           obj.setMaximum(true);
+           obj.setClosable(true);
+           //obj.setMaximum(true);
        }catch (Exception e){
            e.printStackTrace();
        }

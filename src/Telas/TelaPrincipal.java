@@ -48,12 +48,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Menu");
 
         jMenu3.setText("Cadastrar");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItemAluno.setText("Aluno");
         jMenuItemAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -72,12 +77,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItemCurso);
 
         jMenuItemDiscip.setText("Disciplina");
+        jMenuItemDiscip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDiscipActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemDiscip);
 
         jMenuItemTurma.setText("Turma");
+        jMenuItemTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTurmaActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemTurma);
 
         jMenuItemPeriodo.setText("Período");
+        jMenuItemPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPeriodoActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemPeriodo);
 
         jMenu1.add(jMenu3);
@@ -100,7 +120,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(jdpPrincipal)
         );
 
-        setBounds(0, 0, 638, 407);
+        setBounds(0, 0, 638, 526);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlunoActionPerformed
@@ -110,6 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
        try{
            obj.setVisible(true);
            obj.setClosable(true);
+           obj.setPosicao();
            //obj.setMaximum(true);
        }catch (Exception e){
            e.printStackTrace();
@@ -123,12 +144,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
        try{
            obj.setVisible(true);
            obj.setClosable(true);
+           obj.setPosicao();
            //obj.setMaximum(true);
        }catch (Exception e){
            e.printStackTrace();
        }
         
     }//GEN-LAST:event_jMenuItemCursoActionPerformed
+
+    private void jMenuItemTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTurmaActionPerformed
+        // TODO add your handling code here:
+        
+        cadastrarturma obj = new cadastrarturma();
+        jdpPrincipal.add(obj);
+        
+         try{
+           obj.setVisible(true);
+           obj.setClosable(true);
+           obj.setPosicao();
+           //obj.setMaximum(true);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+        
+    }//GEN-LAST:event_jMenuItemTurmaActionPerformed
+
+    private void jMenuItemPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPeriodoActionPerformed
+        // TODO add your handling code here:
+        
+        cadastrarperiodo obj = new cadastrarperiodo();
+        jdpPrincipal.add(obj);
+          try{
+           obj.setVisible(true);
+           obj.setClosable(true);
+           obj.setPosicao();
+           //obj.setMaximum(true);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+        
+    }//GEN-LAST:event_jMenuItemPeriodoActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+   
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItemDiscipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDiscipActionPerformed
+        // TODO add your handling code here:
+             cadastrardisciplina obj = new cadastrardisciplina();
+        jdpPrincipal.add(obj);
+          try{
+           obj.setVisible(true);
+           obj.setClosable(true);
+           obj.setPosicao();
+           //obj.setMaximum(true);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+    }//GEN-LAST:event_jMenuItemDiscipActionPerformed
 
     /**
      * @param args the command line arguments

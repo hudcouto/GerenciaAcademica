@@ -22,7 +22,8 @@ public class Excecoes extends Exception{
     1004        TurmaExtensao   Data de término inválida.
     1005        TurmaExtensao   A data de início deve preceder a data de térm...
     1006        Graduacao       Limite de períodos excedido. Máximo de 8.
-    9001        cadastrarAluno  Matrícula já existente.
+    9001        cadastrarAluno  Campo {campo} obrigtório.
+    9002        cadastrarAluno  Matrícula já existente.
 
     ____________________________________________________________________________
     */

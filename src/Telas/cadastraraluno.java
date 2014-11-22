@@ -55,6 +55,11 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
         setTitle("Cadastrar Aluno");
 
         jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -198,12 +203,18 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
             listaBDAluno.add(new Aluno(mat, jTextFieldNome.getText(), jTextFieldEnd.getText())); 
             JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
             jButtonLimparActionPerformed(evt);
+            
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
         } catch (Excecoes ex) {
             JOptionPane.showMessageDialog(this,ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        pesquisaAluno tela = new pesquisaAluno();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

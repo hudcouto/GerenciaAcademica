@@ -6,6 +6,7 @@
 package Telas;
 
 import SistemaUniversitario.Aluno;
+import SistemaUniversitario.Excecoes;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -28,6 +29,7 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
      */
     public cadastrarturma() {
         initComponents();
+        //jTextFieldCod.setText("1");
         //listAluno.add(new Aluno(1, "Fulano", "end"));
         //listAluno.add(new Aluno(2, "Ciclano", "end"));
         //listAluno.add(new Aluno(3, "Beltrano", "end"));
@@ -158,13 +160,13 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(28, 28, 28)
-                        .addComponent(jTextFieldCod))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelProf)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelProf)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldProf)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCod)
+                            .addComponent(jTextFieldProf))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -255,7 +257,21 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
+        
+        try {
+            if (jTextFieldProf.getText().isEmpty()){
+                throw new Excecoes(6001, "Campo Professor obrigatório");
+            }
+            
+           
+            
+        } catch (NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "Campo {} inválido!\n" + ex.getMessage());
+  
+        } catch (Excecoes ex) {
+        JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+        
         /*try{
         //Validações de obrigatoriedade dos campos.
         if (jTextFieldNome.getText().isEmpty()){
@@ -300,6 +316,10 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         //JOptionPane.showMessageDialog(this,jListAluno.getSelectedValue());
         //jListTurma.add("teste", this);
         
+        if (jListAluno.getSelectedIndex() == -1){
+            return;
+        }
+        
         //perguntar se esse cara aqui jListAluno.getSelectedIndex()).getNome() tá no jlistTurma ou no listModelTurma
         
         for(int i = 0; i< listModelTurma.getSize() ; i++){
@@ -314,6 +334,10 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        if (jListTurma.getSelectedIndex() == -1){
+            return;
+        }
+        
         listModelTurma.remove(jListTurma.getSelectedIndex());
         jListTurma.setModel(listModelTurma);
     }//GEN-LAST:event_jButtonDeleteActionPerformed

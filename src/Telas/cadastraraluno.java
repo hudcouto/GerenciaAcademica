@@ -173,20 +173,31 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
 
         try{
+            //Validações de obrigatoriedade dos campos.
+            if (jTextFieldNome.getText().isEmpty()){
+                throw new Excecoes(9001, "Campo Nome obrigatório");
+            }
+            if (jTextFieldMat.getText().isEmpty()){
+                throw new Excecoes(9001, "Campo Matrícula obrigatório");
+            }
+            if (jTextFieldEnd.getText().isEmpty()){
+                throw new Excecoes(9001, "Campo Endereço obrigatório");
+            }
+            
             //conversao String -> int
             int mat = Integer.parseInt(jTextFieldMat.getText());
             
             //pesquisa de matrícula concorrente.
             for(Aluno a: listaBDAluno){
                 if (a.getMatricula() == mat){
-                    throw new Excecoes(9001,"Matrícula já existente");
+                    throw new Excecoes(9002,"Matrícula já existente");
                 }
             }
             
             //instancia da classe Aluno.
             listaBDAluno.add(new Aluno(mat, jTextFieldNome.getText(), jTextFieldEnd.getText())); 
             JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
-            
+            jButtonLimparActionPerformed(evt);
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
         } catch (Excecoes ex) {

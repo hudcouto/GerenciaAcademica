@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SistemaUniversitario;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Maquina 8
- */
 public class Disciplina {
-      //<editor-fold defaultstate="collapsed" desc="Atributos">
+    
+    //<editor-fold defaultstate="collapsed" desc="Atributos">
     private int cod;
     private String nome;
     private int cargaHoraria;
@@ -88,6 +80,5 @@ public class Disciplina {
     public int sizeTurma(){
         return this.listaTurmas.size();
     }
-    
     
 }

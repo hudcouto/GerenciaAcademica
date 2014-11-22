@@ -11,7 +11,24 @@ package SistemaUniversitario;
  */
 public class Excecoes extends Exception{
     
-     //<editor-fold defaultstate="collapsed" desc="Atributos">
+    //<editor-fold defaultstate="collapsed" desc="Tabela de Erros">
+    /*
+    ____________________________________________________________________________
+    Código      Classe          Msg
+    ____________________________________________________________________________
+    1001        Turma           Número insuficiente de alunos para formar a t...
+    1002        Turma           qtdCréditos (disciplina da turma do aluno)
+    1003        TurmaExtensao   Data de início inválida.
+    1004        TurmaExtensao   Data de término inválida.
+    1005        TurmaExtensao   A data de início deve preceder a data de térm...
+    1006        Graduacao       Limite de períodos excedido. Máximo de 8.
+    9001        cadastrarAluno  Matrícula já existente.
+
+    ____________________________________________________________________________
+    */
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Atributos">
     private int codigoErro;
     private String mensagemErro;
     //</editor-fold>

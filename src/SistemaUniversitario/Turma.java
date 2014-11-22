@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class Turma {
     
-     //<editor-fold defaultstate="collapsed" desc="Atributos">
+    //<editor-fold defaultstate="collapsed" desc="Atributos">
     private static int codigoSequencia = 1;
     private int codigo;
     private String professor;

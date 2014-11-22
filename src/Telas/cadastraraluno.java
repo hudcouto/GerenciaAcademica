@@ -5,8 +5,13 @@
  */
 package Telas;
 
+import SistemaUniversitario.Excecoes;
 import SistemaUniversitario.Aluno;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +19,11 @@ import java.awt.Dimension;
  */
 public class cadastraraluno extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form cadastraraluno
-     */
+    public ArrayList<Aluno> listaBDAluno;
+    
     public cadastraraluno() {
         initComponents();
+        listaBDAluno = new ArrayList<Aluno>();
     }
 
      public void setPosicao (){
@@ -166,7 +171,27 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-       Aluno a = new Aluno(Integer.getInteger(jTextFieldMat.getText()), jTextFieldNome.getText(), jTextFieldEnd.getText());
+
+        try{
+            //conversao String -> int
+            int mat = Integer.parseInt(jTextFieldMat.getText());
+            
+            //pesquisa de matrícula concorrente.
+            for(Aluno a: listaBDAluno){
+                if (a.getMatricula() == mat){
+                    throw new Excecoes(9001,"Matrícula já existente");
+                }
+            }
+            
+            //instancia da classe Aluno.
+            listaBDAluno.add(new Aluno(mat, jTextFieldNome.getText(), jTextFieldEnd.getText())); 
+            JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+            
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
+        } catch (Excecoes ex) {
+            JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
 

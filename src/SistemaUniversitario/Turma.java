@@ -26,8 +26,7 @@ public abstract class Turma {
             throw new Excecoes(1001,
                                 "Número insuficiente de alunos para formar a turma: "
                                 + listaAlunos.size()
-                                + ".\nMínimo necessário: 5 alunos."
-                                + ".\nDeseja inserir novos alunos à turma?");
+                                + ".\nMínimo necessário: 5 alunos.");
         }
         //throw p
         this.codigo = this.codigoSequencia;

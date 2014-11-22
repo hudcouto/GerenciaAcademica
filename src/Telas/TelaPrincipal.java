@@ -22,6 +22,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        
+        TelaPrincipal.listaBDAluno.add(new Aluno(1, "Fulano", "end"));
+        TelaPrincipal.listaBDAluno.add(new Aluno(2, "Ciclano", "end"));
+        TelaPrincipal.listaBDAluno.add(new Aluno(3, "Beltrano", "end"));
     }
 
     /**
@@ -54,7 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Menu");
@@ -126,7 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(jdpPrincipal)
         );
 
-        setBounds(0, 0, 638, 526);
+        setBounds(0, 0, 638, 630);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlunoActionPerformed

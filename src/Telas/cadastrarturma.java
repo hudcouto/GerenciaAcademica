@@ -7,6 +7,8 @@ package Telas;
 
 import SistemaUniversitario.Aluno;
 import SistemaUniversitario.Excecoes;
+import SistemaUniversitario.TurmaExtensao;
+import SistemaUniversitario.TurmaGraduacao;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -23,16 +25,14 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
        
     public DefaultListModel listModelAluno = new DefaultListModel();
     public DefaultListModel listModelTurma = new DefaultListModel();
+    static int CodSeq = 1;
     //ArrayList<Aluno> listAluno = new ArrayList<Aluno>();
     /**
      * Creates new form cadastrarturma
      */
     public cadastrarturma() {
         initComponents();
-        //jTextFieldCod.setText("1");
-        //listAluno.add(new Aluno(1, "Fulano", "end"));
-        //listAluno.add(new Aluno(2, "Ciclano", "end"));
-        //listAluno.add(new Aluno(3, "Beltrano", "end"));
+        jTextFieldCod.setText(String.valueOf(CodSeq));
         
         String formatarArray = new String();  
         for (Aluno a : TelaPrincipal.listaBDAluno) {
@@ -70,6 +70,15 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         jListTurma = new javax.swing.JList();
         jButtonInsert = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
+        jRadioButtonExtensao = new javax.swing.JRadioButton();
+        jRadioButtonGraduacao = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabelSemestreLocal = new javax.swing.JLabel();
+        jTextFieldLocalSemestre = new javax.swing.JTextField();
+        jLabelAnoInicio = new javax.swing.JLabel();
+        jTextFieldAnoDatIni = new javax.swing.JTextField();
+        jTextFieldDatFim = new javax.swing.JTextField();
+        jLabelDattTermino = new javax.swing.JLabel();
         jButtonPesquisar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
@@ -90,9 +99,11 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleção de Alunos"));
 
+        jListAluno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jListAluno.setToolTipText("");
         jScrollPane1.setViewportView(jListAluno);
 
+        jListTurma.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jListTurma.setToolTipText("");
         jScrollPane2.setViewportView(jListTurma);
 
@@ -140,15 +151,86 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(32, 32, 32)
                 .addComponent(jButtonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(59, 59, 59)
                 .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jRadioButtonExtensao.setSelected(true);
+        jRadioButtonExtensao.setText("Extensão");
+        jRadioButtonExtensao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonExtensaoActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonGraduacao.setText("Graduação");
+        jRadioButtonGraduacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonGraduacaoActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Extensão"));
+
+        jLabelSemestreLocal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelSemestreLocal.setText("Local:");
+
+        jLabelAnoInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelAnoInicio.setText("Início:");
+
+        jTextFieldAnoDatIni.setToolTipText("Data de início (dd/MM/yyyy).");
+        jTextFieldAnoDatIni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldAnoDatIniActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDatFim.setToolTipText("Data de término (dd/MM/yyyy).");
+
+        jLabelDattTermino.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelDattTermino.setText("Término:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSemestreLocal)
+                    .addComponent(jLabelAnoInicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextFieldAnoDatIni, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelDattTermino)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldDatFim))
+                    .addComponent(jTextFieldLocalSemestre))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldLocalSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSemestreLocal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelAnoInicio)
+                    .addComponent(jTextFieldAnoDatIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDattTermino)
+                    .addComponent(jTextFieldDatFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -165,8 +247,14 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCod)
-                            .addComponent(jTextFieldProf))))
+                            .addComponent(jTextFieldProf)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButtonExtensao, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonGraduacao))))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -174,13 +262,18 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButtonExtensao)
+                        .addComponent(jRadioButtonGraduacao)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelProf)
                     .addComponent(jTextFieldProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -222,8 +315,8 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,9 +355,30 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
             if (jTextFieldProf.getText().isEmpty()){
                 throw new Excecoes(6001, "Campo Professor obrigatório");
             }
+            ArrayList<Aluno> listaInstanciaTurma = new ArrayList<Aluno>();
+            //Popular a listaInstanciaTurma com os registros seleiconados no lado direito da tela (listModelturma)
+            for (Aluno s: TelaPrincipal.listaBDAluno){
+                for(int i = 0; i< listModelTurma.getSize(); i++){
+                    if (s.getNome().equals(listModelTurma.get(i))){
+                        listaInstanciaTurma.add(s);
+                    }
+                }
+            }   
             
-           
+            if (jRadioButtonExtensao.isSelected()){
+                TurmaExtensao te =  new TurmaExtensao(jTextFieldLocalSemestre.getText(), jTextFieldAnoDatIni.getText(), jTextFieldDatFim.getText(), jTextFieldProf.getText(), listaInstanciaTurma);
+            }
+            else{
+                int semestre = Integer.parseInt(jTextFieldLocalSemestre.getText());
+                int ano = Integer.parseInt(jTextFieldAnoDatIni.getText());
+                TurmaGraduacao tg = new TurmaGraduacao(semestre, ano, jTextFieldProf.getText(), listaInstanciaTurma);
+            }
+               
+            JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!\n" + listaInstanciaTurma.get(1).getNome());
+             
             
+            CodSeq++;
+            jTextFieldCod.setText(String.valueOf(CodSeq));
         } catch (NumberFormatException ex){
         JOptionPane.showMessageDialog(this, "Campo {} inválido!\n" + ex.getMessage());
   
@@ -309,6 +423,9 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldCod.setText(null);
         jTextFieldProf.setText(null);
+        jTextFieldAnoDatIni.setText(null);
+        jTextFieldDatFim.setText(null);
+        jTextFieldLocalSemestre.setText(null);
         //jTextFieldMat.setText(null);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
@@ -342,6 +459,27 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         jListTurma.setModel(listModelTurma);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
+    private void jRadioButtonExtensaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonExtensaoActionPerformed
+        jRadioButtonGraduacao.setSelected(false);
+        jLabelSemestreLocal.setText("Local:");
+        jLabelAnoInicio.setText("Início:");
+        jLabelDattTermino.setVisible(true);
+        jTextFieldDatFim.setVisible(true);
+        
+    }//GEN-LAST:event_jRadioButtonExtensaoActionPerformed
+
+    private void jRadioButtonGraduacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGraduacaoActionPerformed
+        jRadioButtonExtensao.setSelected(false);
+        jLabelSemestreLocal.setText("Semestre:");
+        jLabelAnoInicio.setText("Ano:");
+        jLabelDattTermino.setVisible(false);
+        jTextFieldDatFim.setVisible(false);
+    }//GEN-LAST:event_jRadioButtonGraduacaoActionPerformed
+
+    private void jTextFieldAnoDatIniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoDatIniActionPerformed
+        jTextFieldAnoDatIni.setText("teste");      // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAnoDatIniActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDelete;
@@ -351,14 +489,23 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelAnoInicio;
+    private javax.swing.JLabel jLabelDattTermino;
     private javax.swing.JLabel jLabelProf;
+    private javax.swing.JLabel jLabelSemestreLocal;
     private javax.swing.JList jListAluno;
     private javax.swing.JList jListTurma;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButtonExtensao;
+    private javax.swing.JRadioButton jRadioButtonGraduacao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextFieldAnoDatIni;
     private javax.swing.JTextField jTextFieldCod;
+    private javax.swing.JTextField jTextFieldDatFim;
+    private javax.swing.JTextField jTextFieldLocalSemestre;
     private javax.swing.JTextField jTextFieldProf;
     // End of variables declaration//GEN-END:variables
 }

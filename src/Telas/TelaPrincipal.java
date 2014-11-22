@@ -5,12 +5,18 @@
  */
 package Telas;
 
+import SistemaUniversitario.Aluno;
+import java.util.ArrayList;
+
 /**
  *
  * @author Maquina 8
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    
+    
+    static ArrayList<Aluno> listaBDAluno = new ArrayList<Aluno>();
+    
     /**
      * Creates new form TelaPrincipal
      */

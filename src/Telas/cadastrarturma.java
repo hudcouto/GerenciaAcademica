@@ -22,19 +22,18 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
        
     public DefaultListModel listModelAluno = new DefaultListModel();
     public DefaultListModel listModelTurma = new DefaultListModel();
-    ArrayList<Aluno> listAluno = new ArrayList<Aluno>();
-        
+    //ArrayList<Aluno> listAluno = new ArrayList<Aluno>();
     /**
      * Creates new form cadastrarturma
      */
     public cadastrarturma() {
         initComponents();
-        listAluno.add(new Aluno(1, "Fulano", "end"));
-        listAluno.add(new Aluno(2, "Ciclano", "end"));
-        listAluno.add(new Aluno(3, "Beltrano", "end"));
+        //listAluno.add(new Aluno(1, "Fulano", "end"));
+        //listAluno.add(new Aluno(2, "Ciclano", "end"));
+        //listAluno.add(new Aluno(3, "Beltrano", "end"));
         
         String formatarArray = new String();  
-        for (Aluno a : listAluno) {
+        for (Aluno a : TelaPrincipal.listaBDAluno) {
                 formatarArray = a.getMatricula() + " - " +  a.getNome();
                 listModelAluno.addElement(a.getNome());  
             }  
@@ -310,7 +309,7 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
             }
         }
         
-        listModelTurma.addElement(listAluno.get(jListAluno.getSelectedIndex()).getNome());
+        listModelTurma.addElement(TelaPrincipal.listaBDAluno.get(jListAluno.getSelectedIndex()).getNome());
         jListTurma.setModel(listModelTurma);
     }//GEN-LAST:event_jButtonInsertActionPerformed
 

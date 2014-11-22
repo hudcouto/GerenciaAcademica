@@ -19,11 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class cadastraraluno extends javax.swing.JInternalFrame {
 
-    public ArrayList<Aluno> listaBDAluno;
     
     public cadastraraluno() {
         initComponents();
-        listaBDAluno = new ArrayList<Aluno>();
     }
 
      public void setPosicao (){
@@ -193,14 +191,14 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
             int mat = Integer.parseInt(jTextFieldMat.getText());
             
             //pesquisa de matrícula concorrente.
-            for(Aluno a: listaBDAluno){
+            for(Aluno a: TelaPrincipal.listaBDAluno){
                 if (a.getMatricula() == mat){
                     throw new Excecoes(9002,"Matrícula já existente");
                 }
             }
             
             //instancia da classe Aluno.
-            listaBDAluno.add(new Aluno(mat, jTextFieldNome.getText(), jTextFieldEnd.getText())); 
+            TelaPrincipal.listaBDAluno.add(new Aluno(mat, jTextFieldNome.getText(), jTextFieldEnd.getText())); 
             JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
             jButtonLimparActionPerformed(evt);
             

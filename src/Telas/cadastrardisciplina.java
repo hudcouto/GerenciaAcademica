@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
  * @author Maquina 8
  */
 public class cadastrardisciplina extends javax.swing.JInternalFrame {
-    
     public DefaultListModel listModelTotalTurmas = new DefaultListModel();
     public DefaultListModel listModelTurmasSelecionadas = new DefaultListModel();
     public ArrayList<Turma> listaTurmaTemp = new ArrayList<Turma>();

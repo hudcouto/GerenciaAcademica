@@ -50,9 +50,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AM
             //listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AN
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Moisés", listaBDAluno));
+            
+            Disciplina d = new Disciplina(1, "Walisson", 40, 20, 10);
+            d.insertArrayTurma(listaBDTurma);
+            listaBDDisciplina.add(d);
+        
         } catch (Excecoes ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     //<editor-fold defaultstate="collapsed" desc="Método para manipular o retorno do OptionPane">

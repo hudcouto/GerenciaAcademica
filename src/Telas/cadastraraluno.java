@@ -18,12 +18,11 @@ import javax.swing.JOptionPane;
  * @author Maquina 8
  */
 public class cadastraraluno extends javax.swing.JInternalFrame {
-
     
+
     public cadastraraluno() {
         initComponents();
     }
-
      public void setPosicao (){
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
@@ -171,6 +170,22 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
+        int mat3 = Integer.parseInt(jTextFieldMat.getText());
+        if (jTextFieldMat.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Favor informar um RA");
+        }else {
+            for (Aluno a: TelaPrincipal.listaBDAluno){
+                if (a.getMatricula() == mat3){
+                    TelaPrincipal.listaBDAluno.remove(a);
+                    JOptionPane.showMessageDialog(this, "Aluno Excluido com Sucesso");
+                    jButtonLimparActionPerformed(evt);
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
+            jButtonLimparActionPerformed(evt);
+        }
+        
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -210,8 +225,22 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        pesquisaAluno tela = new pesquisaAluno();
-        tela.setVisible(true);
+        //pesquisaAluno tela = new pesquisaAluno();
+        //tela.setVisible(true);
+        int mat2 = Integer.parseInt(jTextFieldMat.getText());
+        if (jTextFieldMat.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Favor informar um RA");
+        }else {
+            for(Aluno a: TelaPrincipal.listaBDAluno){
+                if(a.getMatricula() == mat2){
+                    jTextFieldNome.setText(a.getNome());
+                    jTextFieldEnd.setText(a.getEndereco());
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
+        }
+        jButtonLimparActionPerformed(evt);
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 

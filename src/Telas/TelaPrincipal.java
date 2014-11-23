@@ -6,7 +6,16 @@
 package Telas;
 
 import SistemaUniversitario.Aluno;
+import SistemaUniversitario.Curso;
+import SistemaUniversitario.Disciplina;
+import SistemaUniversitario.Excecoes;
+import SistemaUniversitario.Periodo;
+import SistemaUniversitario.Turma;
+import SistemaUniversitario.TurmaGraduacao;
+
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +24,16 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
-    
+    //Adicionar alunos a uma turma de graduação ou de extensão.
     static ArrayList<Aluno> listaBDAluno = new ArrayList<Aluno>();
+    //Adicionar uma turma para uma disciplina ou para um curso de extensão;
+    static ArrayList<Turma> listaBDTurma = new ArrayList<Turma>();
+    //Incluir uma disciplina em um período de um curso;
+    static ArrayList<Disciplina> listaBDDisciplina = new ArrayList<Disciplina>();
+    //Incluir um período em um curso; 
+    static ArrayList<Periodo> listaBDPeriodo = new ArrayList<Periodo>();
+    //Incluir um novo curso, de extensão ou de graduação; 
+    static ArrayList<Curso> listaBDCurso = new ArrayList<Curso>();
     
     /**
      * Creates new form TelaPrincipal
@@ -24,9 +41,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         
-        TelaPrincipal.listaBDAluno.add(new Aluno(1, "Fulano", "end"));
-        TelaPrincipal.listaBDAluno.add(new Aluno(2, "Ciclano", "end"));
-        TelaPrincipal.listaBDAluno.add(new Aluno(3, "Beltrano", "end"));
+        listaBDAluno.add(new Aluno(1, "Fulano", "end"));
+        listaBDAluno.add(new Aluno(2, "Ciclano", "end"));
+        listaBDAluno.add(new Aluno(3, "Beltrano", "end"));
+        listaBDAluno.add(new Aluno(4, "Bacana", "end"));
+        listaBDAluno.add(new Aluno(5, "Tretado", "end"));
+        try {
+            listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AM
+            //listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AN
+            listaBDTurma.add(new TurmaGraduacao(1, 2014, "Moisés", listaBDAluno));
+        } catch (Excecoes ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //<editor-fold defaultstate="collapsed" desc="Método para manipular o retorno do OptionPane">

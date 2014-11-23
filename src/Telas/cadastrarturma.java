@@ -9,6 +9,7 @@ import SistemaUniversitario.Aluno;
 import SistemaUniversitario.Excecoes;
 import SistemaUniversitario.TurmaExtensao;
 import SistemaUniversitario.TurmaGraduacao;
+import static Telas.TelaPrincipal.listaBDTurma;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -35,11 +36,13 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         initComponents();
         jTextFieldCod.setText(String.valueOf(CodSeq));
         
+        //Populando o listModel a partir do conteúdo em listaBDAluno.
         String formatarArray = new String();  
         for (Aluno a : TelaPrincipal.listaBDAluno) {
                 formatarArray = a.getMatricula() + " - " +  a.getNome();
                 listModelAluno.addElement(a.getNome());  
             }  
+        //Populando o jListAluno (fica na esquerda) a partir do listModel anteriormente populado
         jListAluno.setModel(listModelAluno);
        
     }
@@ -350,16 +353,8 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    
-    
-    
-    
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        if (TelaPrincipal.handleOptionPane("testeee", "teste1")){
-            
-        }
-        //JOptionPane.showMessageDialog(null, "You entered " + value);
-            
+           
         try {
             if (jTextFieldProf.getText().isEmpty()){
                 throw new Excecoes(6001, "Campo Professor obrigatório");
@@ -376,11 +371,13 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
             
             if (jRadioButtonExtensao.isSelected()){
                 TurmaExtensao te =  new TurmaExtensao(jTextFieldLocalSemestre.getText(), jTextFieldAnoDatIni.getText(), jTextFieldDatFim.getText(), jTextFieldProf.getText(), listaInstanciaTurma);
+                listaBDTurma.add(te);
             }
             else{
                 int semestre = Integer.parseInt(jTextFieldLocalSemestre.getText());
                 int ano = Integer.parseInt(jTextFieldAnoDatIni.getText());
                 TurmaGraduacao tg = new TurmaGraduacao(semestre, ano, jTextFieldProf.getText(), listaInstanciaTurma);
+                listaBDTurma.add(tg);
             }
              
             
@@ -440,8 +437,6 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
-        //JOptionPane.showMessageDialog(this,jListAluno.getSelectedValue());
-        //jListTurma.add("teste", this);
         
         if (jListAluno.getSelectedIndex() == -1){
             return;

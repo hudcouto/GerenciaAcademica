@@ -44,11 +44,20 @@ public class Disciplina {
     public int getQuantMinCreditos() {
         return quantMinCreditos;
     }
-//</editor-fold> 
+    //</editor-fold> 
   
-    //Overload Turma Extensao
-    public void insertTurma(String local, String dataInicio, String dataFim, String professor, ArrayList<Aluno> listaAlunos) throws Excecoes{ 
-        this.listaTurmas.add(new TurmaExtensao(local, dataInicio, dataFim, professor, listaAlunos));
+    //<editor-fold defaultstate="collapsed" desc="Métodos da listaTurmas">
+//Overload Turma Extensao
+    //public void insertTurma(String local, String dataInicio, String dataFim, String professor, ArrayList<Aluno> listaAlunos) throws Excecoes{
+    //    this.listaTurmas.add(new TurmaExtensao(local, dataInicio, dataFim, professor, listaAlunos));
+    //}
+    
+    public void insertArrayTurma(ArrayList<Turma> listaTurmas){
+        this.listaTurmas = listaTurmas;
+    }
+    
+    public void insertTurma(TurmaGraduacao tg){
+        this.listaTurmas.add(tg);
     }
     
     //Overload Turma Graduacao
@@ -80,5 +89,6 @@ public class Disciplina {
     public int sizeTurma(){
         return this.listaTurmas.size();
     }
+//</editor-fold>
     
 }

@@ -208,7 +208,16 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
             //pesquisa de matrícula concorrente.
             for(Aluno a: TelaPrincipal.listaBDAluno){
                 if (a.getMatricula() == mat){
-                    throw new Excecoes(9002,"Matrícula já existente");
+                    if (TelaPrincipal.handleOptionPane("Matrícula concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
+                        a.setNome(jTextFieldNome.getText());
+                        a.setEndereco(jTextFieldEnd.getText());
+                        JOptionPane.showMessageDialog(this, "Dadaos alterados com sucesso!");
+                        jButtonLimparActionPerformed(evt);
+                        return;
+                    }else{
+                        return;
+                    }
+                    //throw new Excecoes(9002,"Matrícula já existente");
                 }
             }
             

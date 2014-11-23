@@ -7,6 +7,7 @@ package Telas;
 
 import SistemaUniversitario.Aluno;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaPrincipal.listaBDAluno.add(new Aluno(2, "Ciclano", "end"));
         TelaPrincipal.listaBDAluno.add(new Aluno(3, "Beltrano", "end"));
     }
-
+    
+    //<editor-fold defaultstate="collapsed" desc="Método para manipular o retorno do OptionPane">
+    public static boolean handleOptionPane(String nomeDaTela, String mensagem){
+        // display the showOptionDialog
+        int choice = JOptionPane.showOptionDialog(null,
+                mensagem,
+                nomeDaTela,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, null, null);
+        
+        // interpret the user's choice
+        if (choice == JOptionPane.YES_OPTION)
+        {
+            return true;
+        }
+        return false;
+    }
+//</editor-fold>
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

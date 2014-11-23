@@ -12,6 +12,7 @@ import SistemaUniversitario.TurmaGraduacao;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
@@ -349,8 +350,16 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    
+    
+    
+    
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        
+        if (TelaPrincipal.handleOptionPane("testeee", "teste1")){
+            
+        }
+        //JOptionPane.showMessageDialog(null, "You entered " + value);
+            
         try {
             if (jTextFieldProf.getText().isEmpty()){
                 throw new Excecoes(6001, "Campo Professor obrigatório");
@@ -373,7 +382,8 @@ public class cadastrarturma extends javax.swing.JInternalFrame {
                 int ano = Integer.parseInt(jTextFieldAnoDatIni.getText());
                 TurmaGraduacao tg = new TurmaGraduacao(semestre, ano, jTextFieldProf.getText(), listaInstanciaTurma);
             }
-               
+             
+            
             JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!\n" + listaInstanciaTurma.get(1).getNome());
              
             

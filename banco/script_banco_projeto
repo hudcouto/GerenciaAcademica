@@ -1,0 +1,78 @@
+CREATE TABLE aluno (
+  codigoAluno INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  curso_codigo_curso INTEGER UNSIGNED NOT NULL,
+  matricula VARCHAR(10) UNSIGNED NULL,
+  nome VARCHAR(50) NULL,
+  endereco VARCHAR(150) NULL,
+  PRIMARY KEY(codigoAluno),
+  INDEX aluno_FKIndex1(curso_codigo_curso)
+);
+
+CREATE TABLE aluno_has_turma (
+  aluno_codigoAluno INT UNSIGNED NOT NULL,
+  turma_codigoTurma INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(aluno_codigoAluno, turma_codigoTurma),
+  INDEX aluno_has_turma_FKIndex1(aluno_codigoAluno),
+  INDEX aluno_has_turma_FKIndex2(turma_codigoTurma)
+);
+
+CREATE TABLE curso (
+  codigo_curso INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  turma_codigoTurma INTEGER UNSIGNED NOT NULL,
+  tipo_curso_codigo_tipo_curso INTEGER UNSIGNED NOT NULL,
+  departamento VARCHAR(100) NULL,
+  nome_curso VARCHAR(50) NULL,
+  coordenador_curso VARCHAR(50) NULL,
+  carga_horaria INTEGER UNSIGNED NULL,
+  turno VARCHAR NULL,
+  PRIMARY KEY(codigo_curso),
+  INDEX curso_FKIndex1(tipo_curso_codigo_tipo_curso),
+  INDEX curso_FKIndex2(turma_codigoTurma)
+);
+
+CREATE TABLE disciplina (
+  codigo_disciplina INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  periodo_numero INTEGER UNSIGNED NOT NULL,
+  nome_disciplina VARCHAR(50) NULL,
+  carga_horaria DATETIME NULL,
+  quantidade_creditos INTEGER UNSIGNED NULL,
+  quantidade_min_creditos INTEGER UNSIGNED NULL,
+  PRIMARY KEY(codigo_disciplina),
+  INDEX disciplina_FKIndex1(periodo_numero)
+);
+
+CREATE TABLE periodo (
+  numero INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  curso_codigo_curso INTEGER UNSIGNED NOT NULL,
+  quantidade_creditos INTEGER UNSIGNED NULL,
+  PRIMARY KEY(numero),
+  INDEX periodo_FKIndex1(curso_codigo_curso)
+);
+
+CREATE TABLE professor (
+  codigo_professor INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  nome_professor VARCHAR(50) NULL,
+  PRIMARY KEY(codigo_professor)
+);
+
+CREATE TABLE tipo_curso (
+  codigo_tipo_curso INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  descricao_tipo_curso INTEGER UNSIGNED NULL,
+  PRIMARY KEY(codigo_tipo_curso)
+);
+
+CREATE TABLE turma (
+  codigoTurma INTEGER UNSIGNED NOT NULL,
+  professor_codigo_professor INTEGER UNSIGNED NOT NULL,
+  disciplina_codigo_disciplina INTEGER UNSIGNED NOT NULL,
+  local_turma VARCHAR(50) NULL,
+  datainicio DATE NULL,
+  datafim DATE NULL,
+  semestre INTEGER UNSIGNED NULL,
+  ano DATE NULL,
+  PRIMARY KEY(codigoTurma, professor_codigo_professor),
+  INDEX turma_FKIndex1(disciplina_codigo_disciplina),
+  INDEX turma_FKIndex2(professor_codigo_professor)
+);
+
+

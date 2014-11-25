@@ -326,6 +326,7 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
                     if (TelaPrincipal.handleOptionPane("Quantidade de Creditos Concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
                         p.setNumeroperiodo(jTextFieldNumeroPeriodo.getText());
                         p.setQtdCred(jTextFieldQtdCred.getText());
+                        
                         JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
                         jButtonLimparActionPerformed(evt);
                         return;

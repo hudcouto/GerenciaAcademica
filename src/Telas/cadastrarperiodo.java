@@ -5,13 +5,17 @@
  */
 package Telas;
 
+import SistemaUniversitario.Aluno;
 import SistemaUniversitario.Disciplina;
+import SistemaUniversitario.Excecoes;
+import SistemaUniversitario.Periodo;
 import static Telas.TelaPrincipal.listaBDDisciplina;
 import java.awt.Dimension;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static Telas.TelaPrincipal.listaBDPeriodo;
 
 /**
  *
@@ -87,13 +91,13 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDisciplina = new javax.swing.JTable();
         jButtonSalvar = new javax.swing.JButton();
-        jButtonPesquisar = new javax.swing.JButton();
+        jButtonPesquisar1 = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldQtdCred = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBoxNumP = new javax.swing.JComboBox();
+        jTextFieldNumeroPeriodo = new javax.swing.JTextField();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -156,10 +160,25 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         );
 
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
-        jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar1.setText("Pesquisar");
+        jButtonPesquisar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisar1ActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,8 +193,6 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Número: ");
 
-        jComboBoxNumP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " " }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,21 +206,20 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonPesquisar)
+                                .addComponent(jButtonPesquisar1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE))
+                        .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldQtdCred)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addGap(8, 8, 8)
-                        .addComponent(jComboBoxNumP, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNumeroPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,15 +228,14 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldQtdCred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jComboBoxNumP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldNumeroPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
-                    .addComponent(jButtonPesquisar)
+                    .addComponent(jButtonPesquisar1)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonLimpar))
                 .addContainerGap())
@@ -232,6 +247,10 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         // TODO add your handling code here:
          jTextFieldQtdCred.setText(null);
+         jTextFieldNumeroPeriodo.setText(null);
+         for (int i=0; i<TableModelDisciplina.getRowCount(); i++){
+             TableModelDisciplina.removeRow(i);
+         }
     }//GEN-LAST:event_jButtonLimparActionPerformed
    
     
@@ -249,21 +268,137 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButtonExcluirDisciplinaActionPerformed
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+          if (jTextFieldNumeroPeriodo.getText().isEmpty()){
+                throw new Excecoes(4001, "Campo número inválido.");
+            }
+            int num = Integer.parseInt(jTextFieldNumeroPeriodo.getText());
+            if (num < 0){
+                throw new Excecoes(4002, "Número inválido. Somente números inteiros positivos.");
+            }
+            for (Periodo p: TelaPrincipal.listaBDPeriodo){
+                if (p.getNumero()== num){
+                    if (TelaPrincipal.handleOptionPane("Excluir", "Período " + p.getNumero()+ " encontrado!\n" +
+                                                        "Tem certeza que deseja excluir?") == true){
+                        TelaPrincipal.listaBDPeriodo.remove(p);
+                        JOptionPane.showMessageDialog(this, "Período excluído com sucesso");
+                        jButtonLimparActionPerformed(evt);
+                        return;
+                    }else{
+                        return;   
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Nenhum Período encontrado");
+            jButtonLimparActionPerformed(evt);
+            
+        } catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(this, "Null test.\n" + ex.getMessage());
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Campo número inválido!\n" + ex.getMessage());
+        } catch (Excecoes ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE );
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+         try{
+            //Validações de obrigatoriedade dos campos.
+            if (jTextFieldNumeroPeriodo.getText().isEmpty()){
+                throw new Excecoes(9001, "Campo Número Período obrigatório");
+            }
+            if (jTextFieldQtdCred.getText().isEmpty()){
+                throw new Excecoes(9001, "Campo QTD Crédito obrigatório");
+            }
+            
+            //conversao String -> int
+            int nump = Integer.parseInt(jTextFieldNumeroPeriodo.getText());
+            int qtdc = Integer.parseInt(jTextFieldQtdCred.getText());
+            
+            
+            //pesquisa de matrícula concorrente.
+            for(Periodo p: TelaPrincipal.listaBDPeriodo){
+                if (p.getQuantidadeCreditos()== qtdc){
+                    if (TelaPrincipal.handleOptionPane("Quantidade de Creditos Concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
+                        p.setNumeroperiodo(jTextFieldNumeroPeriodo.getText());
+                        p.setQtdCred(jTextFieldQtdCred.getText());
+                        JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
+                        jButtonLimparActionPerformed(evt);
+                        return;
+                    }else{
+                        return;
+                    }
+                    //throw new Excecoes(9002,"Matrícula já existente");
+                }
+            }
+            
+            //instancia da classe Aluno.
+            TelaPrincipal.listaBDPeriodo.add(new Periodo(qtdc,nump)); 
+            
+            JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+            jButtonLimparActionPerformed(evt);
+            
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
+        } catch (Excecoes ex) {
+            JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+    }                                             
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+     
+        
+             
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisar1ActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            //Retorno do textbox do JOptionPane
+            String buscaNumero = (String)JOptionPane.showInputDialog("Quantidade de Crédito:");
+            
+            //Verifica o preenchimento do campo de pesquisa.
+            if ((buscaNumero != null) && (buscaNumero.length() > 0)) {
+                int num2 = Integer.parseInt(buscaNumero);
+                for(Periodo p: TelaPrincipal.listaBDPeriodo){
+                    if(p.getNumero()== num2){
+                        jTextFieldNumeroPeriodo.setText(String . valueOf(p.getNumero()));
+                        jTextFieldQtdCred.setText(String.valueOf(p.getQuantidadeCreditos()));
+                        JOptionPane.showMessageDialog(this, "Encontrado: " + p.getNumero() + "!");
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(this, "Nenhum período encontrado");
+                jButtonLimparActionPerformed(evt);
+                return;
+            }
+            jButtonLimparActionPerformed(evt);
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Formato não suportado.\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonPesquisar1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonExcluirDisciplina;
     private javax.swing.JButton jButtonLimpar;
-    private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonPesquisar1;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBoxDisciplina;
-    private javax.swing.JComboBox jComboBoxNumP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDisciplina;
+    private javax.swing.JTextField jTextFieldNumeroPeriodo;
     private javax.swing.JTextField jTextFieldQtdCred;
     // End of variables declaration//GEN-END:variables
 }

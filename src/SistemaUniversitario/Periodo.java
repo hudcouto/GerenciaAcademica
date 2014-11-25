@@ -69,4 +69,12 @@ public class Periodo {
         return false;
     }
 //</editor-fold>
+
+    public void setNumeroperiodo(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setQtdCred(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

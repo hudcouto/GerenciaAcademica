@@ -351,8 +351,11 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+       
+        
+        
+        
         try{
-            
             if (jTextFieldNome.getText().isEmpty()){
                 throw new Excecoes (5001, "Campo nome obrigatório");
             }  
@@ -377,15 +380,39 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
             
             
             for (Disciplina d: listaBDDisciplina){
-                if (cod == d.getCod()){
-                    throw new Excecoes (5006, "O código para essa disciplina já foi cadastrado anteriormente.");
-                }
                 if (cod < 1){
                     throw new Excecoes (5007, "Código inválido. Somente números inteiros positivos.");
                 }
-                    /*if (TelaPrincipal.handleOptionPane("Disciplina concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
+                if (cod == d.getCod()){
+                    if (TelaPrincipal.handleOptionPane("Disciplina concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
+                        d.setNome(jTextFieldNome.getText());
+                        d.setCargaHoraria(Integer.parseInt(jTextFieldCargaH.getText()));
+                        d.setQuantCreditos(Integer.parseInt(jTextFieldQtdCred.getText()));
+                        d.setQuantMinCreditos(Integer.parseInt(jTextFieldQtdMinCred.getText()));
+                        
+                        d.clearTurma();
+                        for(Turma t2: listaTurmaTemp){
+                            d.insertTurma((TurmaGraduacao) t2);
+                        }
+                        
+                        
+preencheJlistTurmasSelecionadas();
+                        
+                        JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
+                        jButtonLimparActionPerformed(evt);
+                        return;
+                    }else{
+                        return;
+                    }
+                }
+                
+                    /*if 
+(TelaPrincipal.handleOptionPane("Disciplina 
+concorrente", "Os dados serão sobescritos. Tem certeza 
+disso?") == true){
                     //d.setartodoumndo
-                    JOptionPane.showMessageDialog(this, "Dadaos alterados com sucesso!");
+                    JOptionPane.showMessageDialog
+(this, "Dadaos alterados com sucesso!");
                     jButtonLimparActionPerformed(evt);
                     return;
                     }else{
@@ -402,10 +429,15 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
             jButtonLimparActionPerformed(evt);
             
         } catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(this, "Impossivel converter essa letra aí jhowwwww!\n" + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);    
+            JOptionPane.showMessageDialog(this, "Impossivel converter essa letra aí jhowwwww!\n" + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);   
+ 
         } catch (Excecoes e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
+        
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed

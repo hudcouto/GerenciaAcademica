@@ -24,7 +24,7 @@ public class Disciplina {
     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Getters dos atributos escalares">
+    //<editor-fold defaultstate="collapsed" desc="Getters">
     public int getCod() {
         return cod;
     }
@@ -44,6 +44,33 @@ public class Disciplina {
     public int getQuantMinCreditos() {
         return quantMinCreditos;
     }
+
+    public ArrayList<Turma> getListaTurmas() {
+        return listaTurmas;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public void setQuantCreditos(int quantCreditos) {
+        this.quantCreditos = quantCreditos;
+    }
+
+    public void setQuantMinCreditos(int quantMinCreditos) {
+        this.quantMinCreditos = quantMinCreditos;
+    }
+    
+    
+    
     //</editor-fold> 
   
     //<editor-fold defaultstate="collapsed" desc="Métodos da listaTurmas">
@@ -89,6 +116,11 @@ public class Disciplina {
     public int sizeTurma(){
         return this.listaTurmas.size();
     }
+    
+    public void clearTurma(){
+        this.listaTurmas.clear();
+    }
+            
 //</editor-fold>
     
 }

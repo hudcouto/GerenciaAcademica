@@ -351,10 +351,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-       
-        
-        
-        
+
         try{
             if (jTextFieldNome.getText().isEmpty()){
                 throw new Excecoes (5001, "Campo nome obrigatório");
@@ -396,7 +393,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
                         }
                         
                         
-preencheJlistTurmasSelecionadas();
+            preencheJlistTurmasSelecionadas();
                         
                         JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
                         jButtonLimparActionPerformed(evt);

@@ -14,13 +14,16 @@ import javax.swing.JOptionPane;
 public class ConnectionFactory {
     public Connection getConnection() {
         try {
+            Class.forName("com.mysql.jdbc.Driver"); 
             return DriverManager.getConnection(
           "jdbc:mysql://104.236.63.244/gerencia_academica", "root", "hudson1810");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e){
+            throw new RuntimeException(e);
         }
     }
-    public boolean getConnectionBoolean() {
+    /*public boolean getConnectionBoolean() {
         try {
             DriverManager.getConnection(
           "jdbc:mysql://104.236.63.244/gerencia_academica", "root", "hudson1810");
@@ -28,5 +31,5 @@ public class ConnectionFactory {
         } catch (SQLException e) {
             return false;
         }
-    }
+    }*/
 }

@@ -6,12 +6,15 @@
 package Telas;
 
 import SistemaUniversitario.Aluno;
+import SistemaUniversitario.ConnectionFactory;
 import SistemaUniversitario.Curso;
 import SistemaUniversitario.Disciplina;
 import SistemaUniversitario.Excecoes;
 import SistemaUniversitario.Periodo;
 import SistemaUniversitario.Turma;
 import SistemaUniversitario.TurmaGraduacao;
+import java.sql.Connection;
+
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -24,6 +27,10 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
+
+    
+    
+    //Connection con = new ConnectionFactory().getConnection();
     //Adicionar alunos a uma turma de graduação ou de extensão.
     static ArrayList<Aluno> listaBDAluno = new ArrayList<Aluno>();
     //Adicionar uma turma para uma disciplina ou para um curso de extensão;

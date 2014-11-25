@@ -5,14 +5,22 @@
  */
 package Telas;
 
+import SistemaUniversitario.Disciplina;
+import static Telas.TelaPrincipal.listaBDDisciplina;
 import java.awt.Dimension;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Maquina 8
  */
 public class cadastrarperiodo extends javax.swing.JInternalFrame {
-
+    
+    public DefaultComboBoxModel CBDisciplinaModel = new DefaultComboBoxModel();
+    public DefaultTableModel TableModelDisciplina = new DefaultTableModel();
     /**
      * Creates new form cadastrarperiodo
      */
@@ -20,7 +28,42 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         initComponents();
         
         preencherComboBoxDisciplina();
+        inicializarTableModelDisciplina();
+        carregarJtable (-1);
         
+    }
+    
+    private void preencherComboBoxDisciplina (){
+ 
+        for (Disciplina d: listaBDDisciplina){
+            CBDisciplinaModel.addElement(d.getNome());
+        }
+        
+        jComboBoxDisciplina.setModel(CBDisciplinaModel);
+    }
+    
+    private void inicializarTableModelDisciplina(){
+        TableModelDisciplina.addColumn("Código");
+        TableModelDisciplina.addColumn("Nome");
+        jTableDisciplina.setModel(TableModelDisciplina);
+    }
+    
+    private void carregarJtable (int ItemSelecionado){
+        for (int i = 0; i < listaBDDisciplina.size(); i++){
+            if (ItemSelecionado == i){  
+                for (int j = 0; j < jTableDisciplina.getRowCount() ;  j++){
+                    if (jTableDisciplina.getModel().getValueAt(j, 0).equals(String.valueOf(listaBDDisciplina.get(i).getCod()))){
+                        //JOptionPane.showMessageDialog(this,"já tem o bacana.");
+                        return;
+                    }
+                }
+                TableModelDisciplina.addRow(new String []{
+                            String.valueOf(listaBDDisciplina.get(i).getCod()),
+                            listaBDDisciplina.get(i).getNome(),
+                        });
+                return;
+            }
+        }
     }
      public void setPosicao (){
         Dimension d = this.getDesktopPane().getSize();
@@ -67,6 +110,11 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         });
 
         jButtonExcluirDisciplina.setText("Excluir");
+        jButtonExcluirDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirDisciplinaActionPerformed(evt);
+            }
+        });
 
         jButtonAlterarDisciplina.setText("Alterar");
 
@@ -188,17 +236,17 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         // TODO add your handling code here:
-        
-        jTextFieldQtdCred.setText(null);
+         jTextFieldQtdCred.setText(null);
     }//GEN-LAST:event_jButtonLimparActionPerformed
-    
-    public void preencherComboBoxDisciplina(){
-        //jComboBoxDisciplina.
-    }
+   
     
     private void jComboBoxDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDisciplinaActionPerformed
-        // TODO add your handling code here:
+        carregarJtable(jComboBoxDisciplina.getSelectedIndex());
     }//GEN-LAST:event_jComboBoxDisciplinaActionPerformed
+
+    private void jButtonExcluirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirDisciplinaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

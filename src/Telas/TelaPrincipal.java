@@ -50,10 +50,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AM
             //listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AN
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Moisés", listaBDAluno));
-            
-            Disciplina d = new Disciplina(1, "Walisson", 40, 20, 10);
-            d.insertArrayTurma(listaBDTurma);
-            listaBDDisciplina.add(d);
+           
+            Disciplina d1 = new Disciplina(1, "POO", 40, 20, 10);
+            Disciplina d2 = new Disciplina(2, "CVV", 40, 20, 10);
+            d1.insertArrayTurma(listaBDTurma);
+            listaBDDisciplina.add(d1);
+            listaBDDisciplina.add(d2);
         
         } catch (Excecoes ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Maquina 8
  */
 public abstract class Curso {
+    
     //<editor-fold defaultstate="collapsed" desc="Atributos">
     private String codCurso;
     private String departamento;

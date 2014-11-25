@@ -18,6 +18,7 @@ public class cadastrarcurso extends javax.swing.JInternalFrame {
      */
     public cadastrarcurso() {
         initComponents();
+        jRadioButtonGraducaoActionPerformed(null);
     }
     
      public void setPosicao (){

@@ -97,13 +97,14 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
         jTextFieldQtdMinCred = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
         jButtonLimpar = new javax.swing.JButton();
 
         jLabel8.setText("jLabel8");
 
         setClosable(true);
         setTitle("Cadastrar Disciplina");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disciplina", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Bodoni MT", 0, 14))); // NOI18N
 
@@ -235,7 +236,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldCargaH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldQtdCred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +260,12 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
 
         jButton2.setText("Pesquisar");
 
-        jButton3.setText("Excluir");
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -281,7 +287,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -295,7 +301,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonExcluir)
                     .addComponent(jButtonLimpar))
                 .addContainerGap())
         );
@@ -362,6 +368,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
             if (jTextFieldQtdMinCred.getText().isEmpty()){
                 throw new Excecoes (5005, "Campo quantidade de mínima de crédito obrigatório");
             }
+            
 
             int cod = Integer.parseInt(jTextFieldCod.getText());
             int cargaHoraria = Integer.parseInt(jTextFieldCargaH.getText());
@@ -372,6 +379,10 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
             for (Disciplina d: listaBDDisciplina){
                 if (cod == d.getCod()){
                     throw new Excecoes (5006, "O código para essa disciplina já foi cadastrado anteriormente.");
+                }
+                if (cod < 1){
+                    throw new Excecoes (5007, "Código inválido. Somente números inteiros positivos.");
+                }
                     /*if (TelaPrincipal.handleOptionPane("Disciplina concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
                     //d.setartodoumndo
                     JOptionPane.showMessageDialog(this, "Dadaos alterados com sucesso!");
@@ -380,7 +391,7 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
                     }else{
                     return;
                     }*/
-                }
+                
             }
             
             
@@ -397,11 +408,68 @@ public class cadastrardisciplina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        
+        Object[] possibilities = listaBDDisciplina.toArray();
+        String s = (String)JOptionPane.showInputDialog(
+        this,
+        "Complete the sentence:\n"
+        + "\"Green eggs and...\"",
+        "Customized Dialog",
+        JOptionPane.PLAIN_MESSAGE,
+        frameIcon,
+        possibilities,
+        "ham");
+
+        //If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+            //setLabel("Green eggs and... " + s + "!");
+            return;
+        }
+
+        //If you're here, the return value was null/empty.
+        //setLabel("Come on, finish the sentence!");
+        
+        
+        /* try {
+        if (jTextFieldMat.getText().isEmpty()){
+        throw new Excecoes(9007, "Campo matrícula inválido.");
+        }
+        int mat = Integer.parseInt(jTextFieldMat.getText());
+        if (mat < 0){
+        throw new Excecoes(9008, "Matrícula inválida. Somente números inteiros positivos.");
+        }
+        for (Aluno a: TelaPrincipal.listaBDAluno){
+        if (a.getMatricula() == mat){
+        if (TelaPrincipal.handleOptionPane("Excluir", "Matrícula " + a.getMatricula()+ " encontrada!\n" +
+        "Tem certeza que deseja excluir " + a.getNome() + "?") == true){
+        TelaPrincipal.listaBDAluno.remove(a);
+        JOptionPane.showMessageDialog(this, "Aluno Excluido com Sucesso");
+        jButtonLimparActionPerformed(evt);
+        return;
+        }else{
+        return;
+        }
+        }
+        }
+        JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
+        jButtonLimparActionPerformed(evt);
+        
+        } catch (NullPointerException ex){
+        JOptionPane.showMessageDialog(this, "Null test.\n" + ex.getMessage());
+        } catch (NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
+        } catch (Excecoes ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE );
+        }*/
+        
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonInsert;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSalvar;

@@ -166,6 +166,7 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
         jTextFieldNome.setText(null);
         jTextFieldEnd.setText(null);
         jTextFieldMat.setText(null);
+        jTextFieldNome.requestFocus();
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -174,9 +175,12 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
             if (jTextFieldMat.getText().isEmpty()){
                 throw new Excecoes(9007, "Campo matrícula inválido.");
             }
-            int mat3 = Integer.parseInt(jTextFieldMat.getText());
+            int mat = Integer.parseInt(jTextFieldMat.getText());
+            if (mat < 0){
+                throw new Excecoes(9008, "Matrícula inválida. Somente números inteiros positivos.");
+            }
             for (Aluno a: TelaPrincipal.listaBDAluno){
-                if (a.getMatricula() == mat3){
+                if (a.getMatricula() == mat){
                     if (TelaPrincipal.handleOptionPane("Excluir", "Matrícula " + a.getMatricula()+ " encontrada!\n" +
                                                         "Tem certeza que deseja excluir " + a.getNome() + "?") == true){
                         TelaPrincipal.listaBDAluno.remove(a);
@@ -196,7 +200,7 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
         } catch (Excecoes ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE );
         }
         
         

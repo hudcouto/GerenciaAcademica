@@ -38,7 +38,7 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
     }
     
     private void preencherComboBoxDisciplina (){
- 
+        
         for (Disciplina d: listaBDDisciplina){
             CBDisciplinaModel.addElement(d.getNome());
         }

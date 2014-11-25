@@ -11,6 +11,7 @@ import SistemaUniversitario.Disciplina;
 import SistemaUniversitario.Excecoes;
 import SistemaUniversitario.Periodo;
 import SistemaUniversitario.Turma;
+import SistemaUniversitario.TurmaExtensao;
 import SistemaUniversitario.TurmaGraduacao;
 
 import java.util.ArrayList;
@@ -50,7 +51,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AM
             //listaBDTurma.add(new TurmaGraduacao(1, 2014, "Miriam Maia", listaBDAluno)); //Codigo : CIC1AN
             listaBDTurma.add(new TurmaGraduacao(1, 2014, "Moisés", listaBDAluno));
-           
+            listaBDTurma.add(new TurmaExtensao("Wizard","22/11/1993", "22/11/1995", "Walisson", listaBDAluno));
+            
             Disciplina d1 = new Disciplina(1, "POO", 40, 20, 10);
             Disciplina d2 = new Disciplina(2, "CVV", 40, 20, 10);
             d1.insertArrayTurma(listaBDTurma);

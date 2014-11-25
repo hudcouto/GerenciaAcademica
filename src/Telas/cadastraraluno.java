@@ -234,22 +234,30 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        //pesquisaAluno tela = new pesquisaAluno();
-        //tela.setVisible(true);
-        int mat2 = Integer.parseInt(jTextFieldMat.getText());
-        if (jTextFieldMat.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Favor informar um RA");
-        }else {
-            for(Aluno a: TelaPrincipal.listaBDAluno){
-                if(a.getMatricula() == mat2){
-                    jTextFieldNome.setText(a.getNome());
-                    jTextFieldEnd.setText(a.getEndereco());
-                    return;
+        try{
+            //Retorno do textbox do JOptionPane
+            String buscaMatricula = (String)JOptionPane.showInputDialog("Matrícula:");
+            
+            //Verifica o preenchimento do campo de pesquisa.
+            if ((buscaMatricula != null) && (buscaMatricula.length() > 0)) {
+                int mat2 = Integer.parseInt(buscaMatricula);
+                for(Aluno a: TelaPrincipal.listaBDAluno){
+                    if(a.getMatricula() == mat2){
+                        jTextFieldNome.setText(a.getNome());
+                        jTextFieldMat.setText(buscaMatricula);
+                        jTextFieldEnd.setText(a.getEndereco());
+                        JOptionPane.showMessageDialog(this, "Encontrado: " + a.getNome() + "!");
+                        return;
+                    }
                 }
+                JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
+                jButtonLimparActionPerformed(evt);
+                return;
             }
-            JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
+            jButtonLimparActionPerformed(evt);
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Formato nÃ£o suportado.\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        jButtonLimparActionPerformed(evt);
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
 

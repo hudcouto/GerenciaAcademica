@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 public class Conexao 
 {
     final private String driver = "com.mysql.jdbc.Driver";
-    final private String url = "jdbc:mysql://locahost/salaodebeleza";
-    final private String usuario = "usuario";
-    final private String senha = "senha";
+    final private String url = "jdbc:mysql://104.236.63.244/gerencia_academica";
+    final private String usuario = "root";
+    final private String senha = "hudson1810";
     private Connection conexao;
     public Statement statement;
     public ResultSet resultset;

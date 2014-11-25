@@ -84,7 +84,6 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jComboBoxDisciplina = new javax.swing.JComboBox();
         jButtonExcluirDisciplina = new javax.swing.JButton();
-        jButtonAlterarDisciplina = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDisciplina = new javax.swing.JTable();
         jButtonSalvar = new javax.swing.JButton();
@@ -116,8 +115,6 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonAlterarDisciplina.setText("Alterar");
-
         jTableDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -140,10 +137,9 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jComboBoxDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonExcluirDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAlterarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -153,8 +149,7 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExcluirDisciplina)
-                    .addComponent(jButtonAlterarDisciplina))
+                    .addComponent(jButtonExcluirDisciplina))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addContainerGap())
@@ -246,11 +241,16 @@ public class cadastrarperiodo extends javax.swing.JInternalFrame {
 
     private void jButtonExcluirDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirDisciplinaActionPerformed
         // TODO add your handling code here:
+        
+         if(jTableDisciplina.getSelectedRow() == -1){
+            return;
+        }
+        ((DefaultTableModel)jTableDisciplina.getModel()).removeRow((jTableDisciplina.getSelectedRow()));
+        
     }//GEN-LAST:event_jButtonExcluirDisciplinaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAlterarDisciplina;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonExcluirDisciplina;
     private javax.swing.JButton jButtonLimpar;

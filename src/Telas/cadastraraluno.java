@@ -169,22 +169,36 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
-        int mat3 = Integer.parseInt(jTextFieldMat.getText());
-        if (jTextFieldMat.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Favor informar um RA");
-        }else {
+        
+        try {
+            if (jTextFieldMat.getText().isEmpty()){
+                throw new Excecoes(9007, "Campo matrícula inválido.");
+            }
+            int mat3 = Integer.parseInt(jTextFieldMat.getText());
             for (Aluno a: TelaPrincipal.listaBDAluno){
                 if (a.getMatricula() == mat3){
-                    TelaPrincipal.listaBDAluno.remove(a);
-                    JOptionPane.showMessageDialog(this, "Aluno Excluido com Sucesso");
-                    jButtonLimparActionPerformed(evt);
-                    return;
+                    if (TelaPrincipal.handleOptionPane("Excluir", "Matrícula " + a.getMatricula()+ " encontrada!\n" +
+                                                        "Tem certeza que deseja excluir " + a.getNome() + "?") == true){
+                        TelaPrincipal.listaBDAluno.remove(a);
+                        JOptionPane.showMessageDialog(this, "Aluno Excluido com Sucesso");
+                        jButtonLimparActionPerformed(evt);
+                        return;
+                    }else{
+                        return;   
+                    }
                 }
             }
             JOptionPane.showMessageDialog(this, "Nenhum Aluno encontrado");
             jButtonLimparActionPerformed(evt);
+            
+        } catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(this, "Null test.\n" + ex.getMessage());
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Campo Matrícula inválido!\n" + ex.getMessage());
+        } catch (Excecoes ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
         
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -211,7 +225,7 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
                     if (TelaPrincipal.handleOptionPane("Matrícula concorrente", "Os dados serão sobescritos. Tem certeza disso?") == true){
                         a.setNome(jTextFieldNome.getText());
                         a.setEndereco(jTextFieldEnd.getText());
-                        JOptionPane.showMessageDialog(this, "Dadaos alterados com sucesso!");
+                        JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
                         jButtonLimparActionPerformed(evt);
                         return;
                     }else{
@@ -256,7 +270,7 @@ public class cadastraraluno extends javax.swing.JInternalFrame {
             }
             jButtonLimparActionPerformed(evt);
         } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Formato nÃ£o suportado.\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Formato não suportado.\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
